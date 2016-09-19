@@ -1,19 +1,24 @@
 DDL:
 
+USE bcd;
+DROP TABLE IF EXISTS matricula;
+DROP TABLE IF EXISTS curso;
 DROP TABLE IF EXISTS curriculo;
+DROP TABLE IF EXISTS disciplina;
 DROP TABLE IF EXISTS aluno;
 DROP TABLE IF EXISTS campus;
-DROP TABLE IF EXISTS curso;
-DROP TABLE IF EXISTS matricula;
-DROP TABLE IF EXISTS disciplina;
+DROP DATABASE IF EXISTS bcd;
+
+CREATE DATABASE IF NOT EXISTS bcd;
+USE bcd;
 
 CREATE TABLE IF NOT EXISTS campus(
-    id tinyint unsigned auto_increment primary key,
-    nome varchar(128)
+    id  tinyint unsigned auto_increment primary key,
+    nome varchar(128) not null
 );
 
-CREATE TABLE IF NOT EXISTS aluno(
-    id  int unsigned auto_increment primary key,
+CREATE TABLE  IF NOT EXISTS aluno(
+    id int unsigned auto_increment primary key,
     nome varchar(128) not null,
     documento char(11) unique not null,
     telefone bigint unsigned,
@@ -22,10 +27,10 @@ CREATE TABLE IF NOT EXISTS aluno(
 
 CREATE TABLE IF NOT EXISTS disciplina(
     id smallint unsigned auto_increment primary key,
-    codigo int unsigned unique not null
+    codigo int unsigned unique not null,
     nome char(100) not null,
-    CH tinyint unsigned,
-    CHmin unisigned smallint
+    CH tinyint unsigned not null,
+    CHmin smallint unsigned not null
 
 );
 
@@ -37,21 +42,21 @@ CREATE TABLE IF NOT EXISTS curriculo(
 );
 
 CREATE TABLE IF NOT EXISTS curso(
-    id unsigned smallint auto_increment primary key,
-    numero  smallint unsigned not null,
-    CHmin  smallint unsigned not null,
-    CHmax  smallint unsigned not null, 
+    id smallint unsigned auto_increment primary key,
+    numero smallint unsigned unique not null,
+    CHmin smallint unsigned not null,
+    CHmax smallint unsigned not null,
     nome varchar(128) not null,
-    campus tinyint unsigned not null,
-    curriculo varchar(128) ,
+    campus tinyint unsigned  not null,
+    curriculo smallint unsigned,
     constraint fk_curso_campus_campus_id foreign key(campus) references campus(id),
-    constraint fk_curso_curriculo_curriculo_id foreign key(curriculo) references curriculo(id),
+    constraint fk_curso_curriculo_curriculo_id foreign key(curriculo) references curriculo(id)
 );
 
 CREATE TABLE IF NOT EXISTS matricula(
-    id unsigned int auto_increment primary key,
+    id  int unsigned auto_increment primary key,
     numero bigint unsigned unique not null,
-    aluno int unsigned not null,
+    aluno int unsigned  not null,
     curso smallint unsigned not null,
     constraint fk_matricula_aluno_aluno_id foreign key(aluno) references aluno(id),
     constraint fk_matricula_curso_curso_id foreign key(curso) references curso(id)
