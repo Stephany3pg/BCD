@@ -1,30 +1,37 @@
 CREATE TABLE  aluno(
-    nome varchar(128),
-    documento char(11) primary key,
-    telefone bigint,
+    id unsigned int auto_increment primary key,
+    nome varchar(128) not null,
+    documento char(11) unique not null,
+    telefone unsigned bigint,
     email varchar(128)
 );
 
-CREATE TABLE matricula(
-    numero char(10) primary key,
-    aluno char(11),
-    curso char(4),
-    constraint fk_matricula_aluno_aluno_documento foreign key(aluno) references aluno(documento),
-    constraint fk_matricula_curso_curso_numero foreign key(curso) references curso(numero)
+CREATE TABLE campus(
+    id unsigned tinyint auto_increment primary key,
+    nome varchar(128)
 );
 
 CREATE TABLE curso(
-    numero char(4) primary key,
-    CHmin int,
-    CHmáx int, 
-    nome varchar(128),
-    campus varchar(128),
-    curriculo varchar(128),
-    constraint fk_curso_campus_campus_nome foreign key(campus) references campus(come),
+    id unsigned smallint auto_increment primary key,
+    numero unsigned smallint not null,
+    CHmin unsigned smallint not null,
+    CHmax unsigned smallint not null, 
+    nome varchar(128) not null,
+    campus tinyint not null,
+    curriculo varchar(128) ,
+    constraint fk_curso_campus_campus_id foreign key(campus) references campus(id),
     constraint fk_curso_curriculo_curriculo_implantacao foreign key(curriculo) references curriculo(implantacao),
     constraint fk_curso_curriculo_curriculo_disciplina foreign key(curriculo) references curriculo(disciplina)
 );
 
-CREATE TABLE campus(
-    nome varchar(128) primary key
+CREATE TABLE matricula(
+    id unsigned int auto_increment primary key,
+    numero unsigned bigint unique not null,
+    aluno unsigned int not null,
+    curso unsigned smallint not null,
+    constraint fk_matricula_aluno_aluno_id foreign key(aluno) references aluno(id),
+    constraint fk_matricula_curso_curso_id foreign key(curso) references curso(id)
 );
+
+
+
