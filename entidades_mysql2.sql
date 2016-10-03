@@ -1,5 +1,7 @@
+
 USE bcd;
 
+DROP TABLE IF EXISTS DisciplinasCursadas;
 DROP TABLE IF EXISTS matricula;
 DROP TABLE IF EXISTS curso;
 DROP TABLE IF EXISTS curriculo;
@@ -60,3 +62,14 @@ CREATE TABLE IF NOT EXISTS matricula(
     constraint fk_matricula_curso_curso_id
                 foreign key(curso) references curso(id)
 );
+
+CREATE TABLE IF NOT EXISTS DisciplinasCursadas (
+    id smallint unsigned auto_increment primary key,
+    matricula int unsigned not null,
+    disciplina smallint unsigned not null,
+    constraint fk_disciplinasCursadas_disciplina_disciplina_id
+                    foreign key(disciplina) references disciplina(id),
+    constraint fk_disciplinaCursadas_matricula_matricula_id
+                    foreign key(matricula) references matricula(id)
+
+); 
