@@ -1,0 +1,124 @@
+graph diagramaER{
+
+//entidades
+    Câmpus [shape=record]
+    Aluno [shape=record]
+    Disciplina [shape=record]
+    Curso [shape=record]
+    Currículo [shape=record]
+    Matrícula [shape=record]
+    DisciplinasCursadas [shape=record]
+    Horário [shape=record]
+    PréRequisitos [shape=record]
+    PedidoDeMatrícula [shape=record]
+    Professor [shape=record]
+    DisciplinasMinistradas [shape=record]    
+//sujeitos
+      /*id [shape=record]
+      nome [shape=record]
+      documento [shape=record]
+      telefone [shape=record]
+      email [shape=record]
+      código [shape=record]
+      CH [shape=record]
+      CHmin [shape=record]
+      CHmax [shape=record]
+      câmpus [shape=record]
+      curso [shape=record]
+      implantação [shape=record]
+      disciplina [shape=record]
+      número [shape=record]
+      matrícula [shape=record]
+      disciplina [shape=record]
+      hora [shape=record]
+      dia_da_semana [shape=record]
+      semanaAB [shape=record]
+      anos [shape=record]
+      semestre [shape=record]
+      ano [shape=record]
+      préRequisito [shape=record]
+      sessão [shape=record]
+      tipo [shape=record]
+      professor [shape=record]*/
+
+// Verbos
+     tem [shape=diamond]
+     pede [shape=diamond]
+     faz [shape=diamond]
+     vinculado [shape=diamond]
+     pertence [shape=diamond]
+     possui [shape=diamond]
+     lotado [shape=diamond]
+     agrega [shape=diamond]
+     contém [shape=diamond]
+     exige [shape=diamond]
+      
+//Ligações
+    /*Câmpus--id
+    Câmpus--nome
+    Aluno--id
+    Aluno--documento
+    Aluno--nome
+    Aluno--telefone
+    Aluno--email
+    Disciplina--id
+    Disciplina--código
+    Disciplina--nome
+    Disciplina--CH
+    Disciplina--CHmin
+    Curso--id
+    Curso--número
+    Curso--CHmin
+    Curso--CHmax
+    Curso--nome
+    Curso--câmpus
+    Currículo--id
+    Currículo--curso
+    Currículo--implantação
+    Currículo--disciplina
+    Matrícula--id
+    Matrícula--número
+    Matrícula--aluno
+    Matrícula--curso
+    DisciplinasCursadas--id
+    DisciplinasCursadas--matrícula
+    DisciplinasCursadas--disciplina
+    Horário--id
+    Horário--hora
+    Horário--dia_da_semana
+    Horário--iSemanaAB
+    Horário--anos
+    Horário--semestre
+    Horário--ano
+    Horário--disciplina
+    PréRequisitos--id
+    PréRequisitos--disciplina
+    PréRequisitos--préRequisito
+    PedidoDeMatrícula--id
+    PedidoDeMatrícula--sessão
+    PedidoDeMatrícula--tipo
+    PedidoDeMatrícula--matrícula
+    PedidoDeMatrícula--disciplina
+    Professor--id
+    Professor--documento
+    Professor--nome
+    Professor--câmpus
+    DisciplinasMinistradas--id
+    DisciplinasMinistradas--professor
+    DisciplinasMinistradas--disciplina*/
+
+     Aluno -- tem -- Matrícula
+     Matrícula -- DisciplinasCursadas -- Disciplina
+     Matrícula -- faz -- PedidoDeMatrícula
+     Matrícula -- vinculado -- Curso
+     PedidoDeMatrícula -- pede -- Disciplina
+     Curso -- pertence -- Câmpus
+     Curso -- possui -- Currículo
+     Professor -- lotado -- Câmpus
+     Disciplina -- DisciplinasMinistradas -- Professor
+     Currículo -- agrega -- Disciplina
+     Disciplina -- contém -- Horário
+     Disciplina -- exige -- PréRequisitos
+
+
+}
