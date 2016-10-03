@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS DisciplinasCursadas;
 DROP TABLE IF EXISTS matricula;
 DROP TABLE IF EXISTS curso;
 DROP TABLE IF EXISTS curriculo;
+DROP TABLE IF EXISTS preRequisito;
 DROP TABLE IF EXISTS disciplina;
 DROP TABLE IF EXISTS aluno;
 DROP TABLE IF EXISTS campus;
@@ -30,6 +31,18 @@ CREATE TABLE IF NOT EXISTS disciplina(
     CHmin smallint unsigned not null
 );
 
+CREATE TABLE IF NOT EXISTS preRequisito(
+    id smallint unsigned auto_increment primary key,
+    disciplina smallint unsigned not null,
+    preRequisito smallint unsigned not null,
+    obrigatorio  boolean not null,
+    eixo boolean not null,
+    constraint fk_preRequisito_preRequisito_disciplina_id
+                foreign key(preRequisito) references disciplina(id),
+    constraint fk_preRequisito_disciplina_disciplina_id
+                foreign key(disciplina) references disciplina(id)
+    
+ );   
 CREATE TABLE IF NOT EXISTS curso(
     id smallint unsigned auto_increment primary key,
     numero smallint unsigned unique not null,
