@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS horario(
    constraint fk_horario_disciplina_disciplina_id
         foreign key(disciplina) references disciplina(id)     
 );
-CREATE TABLE IF NOT EXISTS PredidoDeMatricula(
+CREATE TABLE IF NOT EXISTS PedidoDeMatricula(
   id int unsigned auto_increment primary key,
   sessao char(32) not null,
   tipo tinyint not null,
