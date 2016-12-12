@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS preRequisito;
 DROP TABLE IF EXISTS disciplina;
 DROP TABLE IF EXISTS aluno;
 DROP TABLE IF EXISTS campus;
+DROP TABLE IF EXISTS professor;
+DROP TABLE IF EXISTS horario;
 
 CREATE TABLE IF NOT EXISTS campus(
     id tinyint unsigned auto_increment primary key,
@@ -91,3 +93,15 @@ CREATE TABLE IF NOT EXISTS professor(
   constraint fk_professor_campus_campus_id
         foreign key(campus) references campus(id)  
 );  
+
+CREATE TABLE IF NOT EXISTS horario(
+  id smallint unsigned auto_increment primary key,
+  horaInicio smallint unsigned not null,
+  horaTermino smallint unsigned not null,
+  diaDaSemana tinyint unsigned not null,
+  semanaAB bool not null,
+  disciplina smallint unsigned not null,
+  semestre smallint unsigned not null,
+   constraint fk_horario_disciplina_disciplina_id
+        foreign key(disciplina) references campus(id)     
+);
