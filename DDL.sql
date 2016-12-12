@@ -116,3 +116,12 @@ CREATE TABLE IF NOT EXISTS PredidoDeMatricula(
   constraint fk_PredidoDeMatricula_matricula_matricula_id
     foreign key(matricula) references matricula(id)
 );
+CREATE TABLE IF NOT EXISTS DisciplinasMinistradas(
+  id tinyint unsigned auto_increment primary key,
+  professor smallint unsigned not null,
+  disciplina smallint unsigned not null,
+  constraint fk_DisciplinasMinistradas_disciplina_disciplina_id
+    foreign key(disciplina) references disciplina(id),
+  constraint fk_DisciplinasMinistradas_professor_professor_id
+    foreign key(professor) references professor(id)  
+);
