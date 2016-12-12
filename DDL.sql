@@ -103,5 +103,5 @@ CREATE TABLE IF NOT EXISTS horario(
   disciplina smallint unsigned not null,
   semestre smallint unsigned not null,
    constraint fk_horario_disciplina_disciplina_id
-        foreign key(disciplina) references campus(id)     
+        foreign key(disciplina) references disciplina(id)     
 );
