@@ -82,3 +82,12 @@ CREATE TABLE IF NOT EXISTS DisciplinasCursadas(
     constraint fk_disciplinaCursadas_matricula_matricula_id
         foreign key(matricula) references matricula(id)
 );
+
+CREATE TABLE IF NOT EXISTS professor(
+  id smallint unsigned auto_increment primary key,
+  documento int unsigned not null,
+  nome varchar(128) not null,
+  campus tinyint unsigned not null,  
+  constraint fk_professor_campus_campus_id
+        foreign key(campus) references campus(id)  
+);  
