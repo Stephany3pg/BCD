@@ -105,13 +105,14 @@ CREATE TABLE IF NOT EXISTS horario(
    constraint fk_horario_disciplina_disciplina_id
         foreign key(disciplina) references disciplina(id)     
 );
-
-CREATE TABLE IF NOT EXISTS  disciplinasCursadas(
-  id smallint unsigned auto_increment primary key,
-  matricula  int unsigned,
-  disciplina  smallint unsigned,
-  constraint fk_disciplinasCursadas_matricula_matricula_id
-       foreign key(matricula) references matricula(id),
-  constraint fk_disciplinasCursadas_disciplina_disciplina_id
-       foreingn key(disciplina) references disciplina(id)
+CREATE TABLE IF NOT EXISTS PredidoDeMatricula(
+  id int unsigned auto_increment primary key,
+  sessao char(32) not null,
+  tipo tinyint not null,
+  matricula int unsigned not null,
+  disciplina  smallint unsigned not null,
+  constraint fk_PredidoDeMatricula_disciplina_disciplina_id
+    foreign key(disciplina) references disciplina(id),
+  constraint fk_PredidoDeMatricula_matricula_matricula_id
+    foreign key(matricula) references matricula(id)
 );
