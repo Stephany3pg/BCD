@@ -100,4 +100,4 @@ from NumPreRequisitos inner join verticais on verticais.disciplina=NumPreRequisi
 
 4. % de tempo em sala
 
-select ((CHProfessor.ch/18)*100)/professor.CH as porcentagemSemana from CHProfessor inner join professor on professor.id=CHProfessor.professor; 
+select ((CHProfessor.ch/18)*100)/professor.CH as porcentagemSemana, professor from CHProfessor inner join professor on professor.id=CHProfessor.professor; 
